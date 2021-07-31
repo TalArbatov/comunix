@@ -7,7 +7,7 @@
     "start": "node app",
     "start:server": "nodemon app",
     "start:client": "webpack serve --open",
-    "build": "webpack build"
+    "build:common": "webpack build"
   },
   "keywords": [],
   "author": "",
