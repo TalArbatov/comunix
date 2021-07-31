@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack serve --open"
+    "start": "node app",
+    "start:server": "nodemon app",
+    "start:client": "webpack serve --open",
+    "build": "webpack build"
   },
   "keywords": [],
   "author": "",
@@ -12,7 +15,9 @@
   "dependencies": {
     "@material-ui/core": "^4.12.3",
     "axios": "^0.21.1",
+    "cors": "^2.8.5",
     "css-loader": "^6.2.0",
+    "express": "^4.17.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.4",
@@ -27,6 +32,7 @@
     "@babel/preset-react": "^7.14.5",
     "babel-loader": "^8.2.2",
     "html-webpack-plugin": "^5.3.2",
+    "nodemon": "^2.0.12",
     "webpack-cli": "^4.7.2",
     "webpack-core": "^0.6.9",
     "webpack-dev-server": "^3.11.2",
