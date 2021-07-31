@@ -23,9 +23,7 @@ const Sort = ({
       <span>Sort by: </span>
       <select onChange={ onSort }>
         <option value="no_sort">---</option>
-        {
-          getSortTypes(type).map(sort => <option value={ sort }>{ sort }</option>)
-        }
+        { getSortTypes(type).map(sort => <option key={ sort } value={ sort }>{ sort }</option>) }
       </select>
     </div>
   );

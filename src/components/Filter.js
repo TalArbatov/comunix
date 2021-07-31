@@ -14,7 +14,7 @@ const Filter = ({
       default:
         return '';
     }
-  }
+  };
   
   const filterType = getFilterType(type);
   return filterType !== '' ? (

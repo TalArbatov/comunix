@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { StyledContent } from '../styles';
 import Search from './Search';
 import Results from './Results';
@@ -6,7 +6,6 @@ import { searchEndpoint, getHeaders, dateToMilliseconds } from '../utils'
 import axios from 'axios';
 import _ from 'lodash';
 
-// const types = ['artist', 'album', 'playlist', 'track', 'show', 'episode']
 const selectedTypes = ['artist', 'album', 'track', 'playlist'];
 const Content = () => {
   const [search, setSearch] = useState('');
@@ -27,10 +26,6 @@ const Content = () => {
     playlist: 5
   });
 
-  // temp to see results
-  useEffect(() => {
-  })
-
   const handleSearch = () => {
     const tokenType = localStorage.getItem('tokenType');
     const accessToken = localStorage.getItem('accessToken');
@@ -39,19 +34,13 @@ const Content = () => {
       axios.get(searchEndpoint(search, type), {
         headers: getHeaders(tokenType, accessToken)
       }).then(res => {
-        // console.log(res.data.artists.items);
-        
         resultsToSet = { ...resultsToSet, [type + 's']: res.data[type + 's'].items };
-        // console.log('finished', results);
       }).finally(() => {
-        console.log('resultsToSet', resultsToSet);
         setOgResults(resultsToSet);
         setResults(resultsToSet);
       })  
     })
-    
   };
-
 
   const showMore = type => {
     setItemAmount({
@@ -61,7 +50,6 @@ const Content = () => {
   };
 
   const onSort = (type, value) => {
-    console.log('onSort', type, value);
     switch(type) {   
       case 'artist':
         const artists = [...results.artists];
@@ -85,7 +73,6 @@ const Content = () => {
         const albums = [...results.albums];
         if (value === 'Most recent') {
           albums.sort((first, second) => {
-            console.log(first);
             if (dateToMilliseconds(first.release_date) < dateToMilliseconds(second.release_date)) return 1;
             else if (dateToMilliseconds(first.release_date) > dateToMilliseconds(second.release_date)) return -1
             else return 0;
@@ -93,7 +80,6 @@ const Content = () => {
           setResults({ ...results, albums });
         } else if (value === 'Least recent') {
           albums.sort((first, second) => {
-            console.log(first);
             if (dateToMilliseconds(first.release_date) > dateToMilliseconds(second.release_date)) return 1;
             else if (dateToMilliseconds(first.release_date) < dateToMilliseconds(second.release_date)) return -1
             else return 0;
@@ -101,7 +87,6 @@ const Content = () => {
           setResults({ ...results, albums });
         } else if (value === 'Most tracks') {
           albums.sort((first, second) => {
-            console.log(first);
             if (first.total_tracks < second.total_tracks) return 1;
             else if (first.total_tracks > second.total_tracks) return -1
             else return 0;
@@ -109,7 +94,6 @@ const Content = () => {
           setResults({ ...results, albums });
         } else if (value === 'Least tracks') {
           albums.sort((first, second) => {
-            console.log(first);
             if (first.total_tracks > second.total_tracks) return 1;
             else if (first.total_tracks < second.total_tracks) return -1
             else return 0;
@@ -158,7 +142,6 @@ const Content = () => {
   };
 
   const onFilter = _.debounce((type, keyword) => {
-    console.log('onFilter', type, keyword);
     if (keyword === '') {
       setResults({ ...results, [type + 's']: ogResults[type + 's'] })
       return;
@@ -203,6 +186,7 @@ const Content = () => {
       const data = results[type + 's']?.slice(0, itemAmount[type])
       const moreData = results[type + 's']?.length - data?.length;
       return <Results 
+        key={ type }
         type={ type }
         onSort={ e => onSort(type, e.target.value) } 
         onFilter={ e => onFilter(type, e.target.value) }
@@ -215,11 +199,6 @@ const Content = () => {
     <StyledContent>
       <Search onSubmit={ handleSearch } onChange={ e => setSearch(e.target.value) }/>
       { renderResults() }
-      
-      {/* <Results type="artist" data={ results?.artists?.slice(0, itemAmount.artist) } showMore={ showMore }/>
-      <Results type="album" data={ results?.albums?.slice(0, itemAmount.album) } />
-      <Results type="track" data={ results?.tracks?.slice(0, itemAmount.track) } />
-      <Results type="playlist" data={ results?.playlists?.slice(0, itemAmount.playlist) } /> */}
     </StyledContent>
   );
 };

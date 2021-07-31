@@ -35,15 +35,9 @@ const Results = ({
         <Sort type={ type } onSort={ onSort } />
         <Filter type={ type } onFilter={ onFilter } />
       </div>
-      { 
-        data.map(item => (
-          <Result key={ item.id } item={ item } type={ type }/>
-        ))
-      }
+      { data.map(item => <Result key={ item.id } item={ item } type={ type }/> ) }
       <div className="show-more-container">
-        {
-          itemAmount > 0 && <p onClick={ () => showMore(type) }>Show more ({ itemAmount })</p>
-        }
+        { itemAmount > 0 && <p onClick={ () => showMore(type) }>Show more ({ itemAmount })</p> }
       </div>
     </StyledResults>
   );
