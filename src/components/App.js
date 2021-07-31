@@ -6,7 +6,7 @@ import Content from './Content';
 
 const clientId = '652fd53d0cc34dc2a950e39a95cc18b6';
 const clientSecret = '95330fa075944ec4b0b7efec2cd6e046';
-const redirectionUrl = 'https://comunix-assignment.herokuapp.com/';
+const redirectionUrl = 'https://comunix-assignment.herokuapp.com';
 
 const searchEndpoint = (query) => `https://api.spotify.com/v1/search?q=${query}&type=artist`;
 
