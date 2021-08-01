@@ -433,7 +433,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n// TODO: integrate env variables\nvar config = {\n  clientId: '652fd53d0cc34dc2a950e39a95cc18b6',\n  redirectionUrl: 'http://localhost:8080'\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (config);\n\n//# sourceURL=webpack://comunix-assignment/./src/config.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n// TODO: integrate env variables\nvar config = {\n  clientId: '652fd53d0cc34dc2a950e39a95cc18b6',\n  redirectionUrl: 'https://comunix-assignment.herokuapp.com/'\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (config);\n\n//# sourceURL=webpack://comunix-assignment/./src/config.js?");
 
 /***/ }),
 
